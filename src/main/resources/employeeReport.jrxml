@@ -9,6 +9,10 @@
         <defaultValueExpression><![CDATA[" 1 = 1"]]></defaultValueExpression>
     </parameter>
     <parameter name="minSalary" class="java.lang.Double" isForPrompting="false"/>
+    <parameter name="logo" class="java.awt.image.BufferedImage" isForPrompting="false">
+        <parameterDescription><![CDATA[The letterhead image]]></parameterDescription>
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
     <queryString>
         <![CDATA[SELECT * FROM REPORT.EMPLOYEE WHERE SALARY >= $P{minSalary} AND $P!{condition}]]>
     </queryString>
@@ -17,7 +21,11 @@
     <field name="SALARY" class="java.lang.Double"/>
     <field name="ID" class="java.lang.Integer"/>
     <title>
-        <band height="20" splitType="Stretch">
+        <band height="100" splitType="Stretch">
+            <image>
+                <reportElement x="0" y="0" width="131" height="80" uuid="f1bd77c0-63fe-4a2e-98f6-6d3e26f4f644"/>
+                <imageExpression><![CDATA[$P{logo}]]></imageExpression>
+            </image>
             <textField>
                 <reportElement x="238" y="0" width="100" height="20"/>
                 <textElement/>

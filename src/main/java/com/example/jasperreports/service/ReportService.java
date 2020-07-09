@@ -5,6 +5,9 @@ import com.example.jasperreports.utils.SimpleReportFiller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +20,7 @@ public class ReportService {
     @Autowired
     private SimpleReportExporter simpleExporter;
 
-    public String run() {
+    public String exportSql() throws IOException {
         simpleReportFiller.setReportFileName("employeeEmailReport.jrxml");
         simpleReportFiller.compileReport();
 
@@ -28,6 +31,8 @@ public class ReportService {
         parameters.put("title", "Employee Report Example");
         parameters.put("minSalary", 15000.0);
         parameters.put("condition", " LAST_NAME ='Smith' ORDER BY FIRST_NAME");
+        BufferedImage image = ImageIO.read(getClass().getClassLoader().getResource("img.png"));
+        parameters.put("logo", image );
 
         simpleReportFiller.setParameters(parameters);
         simpleReportFiller.fillReport();

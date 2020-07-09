@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping(value = "/api")
 public class ReportController {
@@ -13,9 +15,9 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
-    @GetMapping("/run")
-    public String getResponse() {
-        return reportService.run();
+    @GetMapping("/export-sql")
+    public String getResponse() throws IOException {
+        return reportService.exportSql();
     }
 }
 
