@@ -13,12 +13,15 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	//implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	compileOnly "org.projectlombok:lombok:1.18.10"
+	compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.13.0'
+	compile group: 'com.lowagie', name: 'itext', version: '2.1.7'
+
 	runtimeOnly 'org.postgresql:postgresql'
+
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
