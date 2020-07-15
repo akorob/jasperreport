@@ -5,10 +5,12 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.export.HtmlExporter;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.export.*;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -88,6 +90,17 @@ public class SimpleReportExporter {
         exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
         exporter.setExporterOutput(new SimpleHtmlExporterOutput(fileName));
 
+        try {
+            exporter.exportReport();
+        } catch (JRException ex) {
+            Logger.getLogger(SimpleReportFiller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void exportToDocx(String fileName) {
+        JRDocxExporter exporter = new JRDocxExporter();
+        exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+        exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(new File(fileName)));
         try {
             exporter.exportReport();
         } catch (JRException ex) {

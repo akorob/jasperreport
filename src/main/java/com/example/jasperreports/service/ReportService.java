@@ -43,6 +43,7 @@ public class ReportService {
         simpleExporter.exportToXlsx("employeeReport.xlsx", "Employee Data");
         simpleExporter.exportToCsv("employeeReport.csv");
         simpleExporter.exportToHtml("employeeReport.html");
+        simpleExporter.exportToDocx("employeeReport.docx");
         return "Ok";
     }
 }
